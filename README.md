@@ -1,4 +1,4 @@
-automation
+Automation
 ==========
 
 My automation stuff.
