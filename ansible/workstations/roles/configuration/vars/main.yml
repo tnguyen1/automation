@@ -1,0 +1,5 @@
+---
+
+config_path: "/home/{{ ansible_user_id }}/.config"
+autostart_path: "{{ config_path }}/autostart/"
+synapse_path: "{{ config_path }}/synapse/"

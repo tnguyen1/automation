@@ -1,0 +1,11 @@
+---
+
+packages:
+  - vim
+  - synapse
+  - terminator
+  - htop
+  - shutter
+  - firefox
+  - git
+  - screen

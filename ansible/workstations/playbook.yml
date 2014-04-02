@@ -1,53 +1,7 @@
 ---
-- hosts: workstations
-
+- name: main playbook for workstation setup
+  hosts: workstations
   connection: local
-  
-  vars:
-    packages: [vim, synapse, terminator, htop, shutter, firefox, git, screen]
-  
-  tasks:
-  - name: ensure packages are at the latest version
-    sudo: yes
-    apt: pkg={{ item }} state=latest
-    with_items: packages
-  
-  - name: ensure google linux package signing key is present
-    sudo: yes
-    apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub state=present
-  
-  - name: ensure google chrome repository is present
-    sudo: yes
-    apt_repository: repo='deb http://dl.google.com/linux/chrome/deb/ stable main' state=present
-  
-  - name: ensure google chrome is at the latest version
-    sudo: yes
-    apt: pkg=google-chrome-stable state=latest
-
-  - name: ensure textadept repository is present
-    sudo: yes
-    apt_repository: repo='ppa:nilarimogard/webupd8' state=present
-  
-  - name: ensure textadept is at the latest version
-    sudo: yes
-    apt: pkg=textadept state=latest
-  
-  - name: ensure oracle java repository is present
-    sudo: yes
-    apt_repository: repo='ppa:webupd8team/java' state=present
-  
-  - name: ensure oracle java is at the latest version
-    sudo: yes
-    apt: pkg=oracle-java7-installer state=latest
-  
-  - name: checkout my configuration files
-    git: >
-      repo=git@github.com:tnguyen1/configuration.git
-      dest=/home/{{ ansible_user_id }}/configuration
-
-  - name: create vimrc symlink
-    file: >
-      src=/home/{{ ansible_user_id }}/configuration/vimrc
-      dest=/home/{{ ansible_user_id }}/.vimrc
-      state=link
-      force=yes
+  roles:
+    - { role: packaging, sudo: yes }
+    - { role: configuration, sudo: no }

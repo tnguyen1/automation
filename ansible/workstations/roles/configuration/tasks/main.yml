@@ -1,0 +1,32 @@
+---
+- name: checkout my configuration files
+  git: >
+    repo=git@github.com:tnguyen1/configuration.git
+    dest=/home/{{ ansible_user_id }}/configuration
+
+- name: create vimrc symlink
+  file: >
+    src=/home/{{ ansible_user_id }}/configuration/vimrc
+    dest=/home/{{ ansible_user_id }}/.vimrc
+    state=link
+    force=yes
+
+- name: remap caps lock key to control key
+  copy: >
+    src="autostart/Remap CapsLk to Ctrl.desktop"
+    dest="{{ autostart_path }}"
+
+- name: autostart synapse
+  copy: >
+    src="autostart/synapse.desktop"
+    dest="{{ autostart_path }}"
+
+- name: autostart shutter
+  copy: >
+    src="autostart/shutter.desktop"
+    dest="{{ autostart_path }}"
+
+- name: synapse configuration
+  copy: >
+    src="synapse/config.json"
+    dest="{{ synapse_path }}"
