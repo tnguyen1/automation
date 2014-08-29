@@ -1,11 +1,11 @@
 ---
 
 packages:
+  - zsh
   - vim
-  - synapse
   - terminator
   - htop
-  - shutter
   - firefox
   - git
-  - screen
+  - ack-grep
+  - curl
