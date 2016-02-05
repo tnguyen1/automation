@@ -9,3 +9,4 @@ My automation stuff.
   * LoggingTestListener - log configuration and test method invocations
   * RetryTestListener - retry test methods uppon failure (for example to workaround annoying flakey tests)
   * SkippingTestListener - skip tests when some requirements are not met base on method or class annotations
+* **python** - Some miscellaneous though useful Python scripts.
