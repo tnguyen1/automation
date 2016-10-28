@@ -7,10 +7,16 @@
 
 - name: create vimrc symlink
   file: >
-    src=/home/{{ ansible_user_id }}/dotfiles/vimrc
-    dest=/home/{{ ansible_user_id }}/.vimrc
+    src=/home/{{ ansible_user_id }}/dotfiles/{{ item }}
+    dest=/home/{{ ansible_user_id }}/.{{ item }}
     state=link
     force=yes
+  with_items:
+    - vimrc
+    - zshrc
+    - ackrc
+    - gitconfig
+    - gitignore_global
 
 - name: remap caps lock key to control key
   copy: >
