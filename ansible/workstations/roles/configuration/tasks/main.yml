@@ -23,3 +23,5 @@
     src="autostart/Remap CapsLk to Ctrl.desktop"
     dest="{{ autostart_path }}"
 
+- name: configure oh-my-zsh theme
+  copy: src="bira-truc.zsh-theme" dest="/home/{{ ansible_user_id }}/.oh-my-zsh/themes/"
