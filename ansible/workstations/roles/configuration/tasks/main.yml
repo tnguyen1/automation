@@ -18,10 +18,11 @@
     - gitconfig
     - gitignore_global
 
-- name: remap caps lock key to control key
+- name: configure autostart applications and scripts
   copy: >
-    src="autostart/Remap CapsLk to Ctrl.desktop"
+    src="{{ item }}"
     dest="{{ autostart_path }}"
+  with_fileglob: autostart/*
 
 - name: configure oh-my-zsh theme
   copy: src="bira-truc.zsh-theme" dest="/home/{{ ansible_user_id }}/.oh-my-zsh/themes/"
@@ -30,3 +31,14 @@
   git: repo=https://github.com/VundleVim/Vundle.vim.git dest=/home/{{ ansible_user_id }}/.vim/bundle/Vundle.vim
 
 - shell: vim +PluginInstall +qall
+
+- name: configure keyboard shortcuts
+  lineinfile: >
+    dest=/home/{{ ansible_user_id }}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+    line='<property name="&lt;Super&gt;space" type="string" value="xfce4-popup-whiskermenu"/>'
+    insertafter='<property name="XF86Explorer" type="string" value="exo-open --launch FileManager"/>'
+
+- lineinfile: >
+    dest=/home/{{ ansible_user_id }}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+    line='<property name="&lt;Super&gt;v" type="string" value="copyq show"/>'
+    insertafter='<property name="XF86Explorer" type="string" value="exo-open --launch FileManager"/>'

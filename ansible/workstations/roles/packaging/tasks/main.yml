@@ -26,3 +26,9 @@
 
 - name: ensure Oracle Java 8 is at latest version
   apt: pkg=oracle-java8-installer state=latest
+
+- name: ensure copyq repository is present
+  apt_repository: repo='ppa:noobslab/indicators' state=present
+
+- name: ensure copyq is at the latest version
+  apt: pkg=copyq state=latest

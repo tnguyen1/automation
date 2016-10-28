@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=CopyQ
+Comment=A cut and paste history utility
+Exec=/usr/bin/copyq
+Terminal=false
+Hidden=false
