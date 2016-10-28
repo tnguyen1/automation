@@ -25,3 +25,8 @@
 
 - name: configure oh-my-zsh theme
   copy: src="bira-truc.zsh-theme" dest="/home/{{ ansible_user_id }}/.oh-my-zsh/themes/"
+
+- name: configure vim
+  git: repo=https://github.com/VundleVim/Vundle.vim.git dest=/home/{{ ansible_user_id }}/.vim/bundle/Vundle.vim
+
+- shell: vim +PluginInstall +qall
