@@ -18,8 +18,11 @@
 - name: ensure textadept is at the latest version
   apt: pkg=textadept state=latest
 
-- name: ensure oracle java repository is present
-  apt_repository: repo='ppa:webupd8team/java' state=present
+- name: ensure Oracle Java 8 APT repository is present
+  apt_repository: repo='ppa:webupd8team/java'
 
-- name: ensure oracle java is at the latest version
-  apt: pkg=oracle-java7-installer state=latest
+- name: ensure Oracle licence is accepted
+  debconf: name='oracle-java8-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
+
+- name: ensure Oracle Java 8 is at latest version
+  apt: pkg=oracle-java8-installer state=latest

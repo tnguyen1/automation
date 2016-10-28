@@ -3,5 +3,5 @@
   hosts: workstations
   connection: local
   roles:
-    - { role: packaging, sudo: yes }
-    - { role: configuration, sudo: no }
+    - { role: packaging, become: yes }
+    - { role: configuration, become: no }
