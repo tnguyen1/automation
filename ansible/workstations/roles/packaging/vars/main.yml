@@ -10,3 +10,9 @@ packages:
   - ack-grep
   - curl
   - autojump
+  - tree
+  - filezilla
+  - openvpn
+  - network-manager-openvpn-gnome
+  - inkscape
+  - gimp

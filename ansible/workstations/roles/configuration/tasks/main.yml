@@ -5,7 +5,7 @@
     dest=/home/{{ ansible_user_id }}/dotfiles
     accept_hostkey=yes
 
-- name: create vimrc symlink
+- name: create dotfiles symlink
   file: >
     src=/home/{{ ansible_user_id }}/dotfiles/{{ item }}
     dest=/home/{{ ansible_user_id }}/.{{ item }}
@@ -27,6 +27,13 @@
 - name: configure oh-my-zsh theme
   copy: src="bira-truc.zsh-theme" dest="/home/{{ ansible_user_id }}/.oh-my-zsh/themes/"
 
+- name: configure oh-my-zsh custom script
+  file: >
+    src=/home/{{ ansible_user_id }}/dotfiles/.oh-my-zsh/custom/truc.zsh
+    dest=/home/{{ ansible_user_id }}/.oh-my-zsh/custom/truc.zsh
+    state=link
+    force=yes
+
 - name: configure vim
   git: repo=https://github.com/VundleVim/Vundle.vim.git dest=/home/{{ ansible_user_id }}/.vim/bundle/Vundle.vim
 
@@ -42,3 +49,21 @@
     dest=/home/{{ ansible_user_id }}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
     line='<property name="&lt;Super&gt;v" type="string" value="copyq show"/>'
     insertafter='<property name="XF86Explorer" type="string" value="exo-open --launch FileManager"/>'
+
+-  git: repo=https://github.com/rgieseke/textadept-themes.git dest=/home/{{ ansible_user_id }}/.textadept/themes
+
+- name: configure textadept
+  copy: src="textadept-init.lua" dest=/home/{{ ansible_user_id }}/.textadept/init.lua
+
+- name: configure docker
+  lineinfile: dest=/etc/default/docker line='DOCKER_OPTS="--dns 192.168.1.254 --dns 8.8.8.8 --dns 8.8.4.4 --insecure-registry ci-01.rd.lan:5000 -H tcp://0.0.0.0:2375 --api-cors-header=\"*\" -H unix:///var/run/docker.sock --api-enable-cors"'
+  become: yes
+
+- name: add current user to docker group
+  user: name={{ ansible_user_id }} groups=docker append=yes
+  become: yes
+
+- name: restart docker
+  service: name=docker state=restarted
+  become: yes
+

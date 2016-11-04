@@ -18,6 +18,12 @@
 - name: ensure textadept is at the latest version
   apt: pkg=textadept state=latest
 
+- name: ensure purple-hangouts for pidgin is at latest version
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - purple-hangouts
+    - pidgin-hangouts
+
 - name: ensure Oracle Java 8 APT repository is present
   apt_repository: repo='ppa:webupd8team/java'
 
@@ -31,4 +37,16 @@
   apt_repository: repo='ppa:noobslab/indicators' state=present
 
 - name: ensure copyq is at the latest version
-  apt: pkg=copyq state=latest
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - copyq
+    - libqt4-svg
+
+- name: add docker-engine apt key
+  apt_key: keyserver=hkp://p80.pool.sks-keyservers.net:80 id=58118E89F3A912897C070ADBF76221572C52609D
+
+- name: ensure docker-engine apt repository is present
+  apt_repository: repo='deb https://apt.dockerproject.org/repo ubuntu-xenial main' state=present
+
+- name: ensure docker-engine is at the latest version
+  apt: pkg=docker-engine state=latest
