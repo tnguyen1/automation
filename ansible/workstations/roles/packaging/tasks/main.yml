@@ -50,3 +50,6 @@
 
 - name: ensure docker-engine is at the latest version
   apt: pkg=docker-engine state=latest
+
+- name: ensure python-pip is at latest version
+  shell: pip install --upgrade pip

@@ -16,3 +16,6 @@ packages:
   - network-manager-openvpn-gnome
   - inkscape
   - gimp
+  - graphviz
+  - python-pip
+  - libssl-dev
