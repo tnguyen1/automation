@@ -12,8 +12,11 @@ packages:
   - autojump
   - tree
   - filezilla
+  - lftp
   - openvpn
   - network-manager-openvpn-gnome
+  - xtightvncviewer
+  - remmina
   - inkscape
   - gimp
   - graphviz

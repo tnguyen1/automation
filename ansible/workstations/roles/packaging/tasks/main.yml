@@ -53,3 +53,9 @@
 
 - name: ensure python-pip is at latest version
   shell: pip install --upgrade pip
+
+- name: ensure Double Commander repository is present
+  apt_repository: repo='ppa:alexx2000/doublecmd'
+
+- name: ensure Double Commander is at the latest version
+  apt: pkg=doublecmd-gtk state=latest
