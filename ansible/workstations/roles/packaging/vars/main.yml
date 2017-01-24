@@ -20,5 +20,8 @@ packages:
   - inkscape
   - gimp
   - graphviz
+  - gnuplot
   - python-pip
   - libssl-dev
+  - fonts-crosextra-caladea
+  - fonts-crosextra-carlito

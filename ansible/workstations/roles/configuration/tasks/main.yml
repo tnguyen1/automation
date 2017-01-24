@@ -61,7 +61,7 @@
 - copy: src="textadept-init.lua" dest=/home/{{ ansible_user_id }}/.textadept/init.lua
 
 - name: configure docker
-  lineinfile: dest=/etc/default/docker line='DOCKER_OPTS="--dns 192.168.1.254 --dns 8.8.8.8 --dns 8.8.4.4 --insecure-registry ci-01.rd.lan:5000 -H tcp://0.0.0.0:2375 --api-cors-header=\"*\" -H unix:///var/run/docker.sock --api-enable-cors"'
+  copy: src="docker-daemon.json" dest="/etc/docker/daemon.json" mode=0600
   become: yes
 
 - name: add current user to docker group
