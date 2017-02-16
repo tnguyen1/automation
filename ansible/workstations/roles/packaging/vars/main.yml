@@ -25,3 +25,5 @@ packages:
   - libssl-dev
   - fonts-crosextra-caladea
   - fonts-crosextra-carlito
+  - spacefm
+  - udevil
