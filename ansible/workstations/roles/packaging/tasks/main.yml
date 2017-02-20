@@ -7,7 +7,7 @@
   apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub state=present
 
 - name: ensure google chrome repository is present
-  apt_repository: repo='deb http://dl.google.com/linux/chrome/deb/ stable main' state=present
+  apt_repository: repo='deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' state=present
 
 - name: ensure google chrome is at the latest version
   apt: pkg=google-chrome-stable state=latest
