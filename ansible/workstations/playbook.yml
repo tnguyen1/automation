@@ -5,3 +5,4 @@
   roles:
     - { role: packaging, become: yes }
     - { role: configuration, become: no }
+    - { role: geerlingguy.docker, become: yes }
