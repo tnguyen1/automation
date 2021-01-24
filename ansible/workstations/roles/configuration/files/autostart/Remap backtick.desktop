@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Remap backtick key
+Comment=Remap the backtick character key
+Exec=/usr/bin/xmodmap -e 'keycode 49 = grave asciitilde'
+Terminal=false
+Hidden=false
