@@ -1,6 +1,6 @@
 # Ansible sample playbooks
 
-### Pre-requisites
+### Pre-requisites
 
 Install [ansible](http://www.ansible.com/) on your workstation.
 
